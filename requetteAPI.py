@@ -32,25 +32,24 @@ def getRequette(dateModif,dateAujd):
         #options_type(key="businessEvent.populate.completionData.fields"),
         #options_type(key="businessEvent.populate.completionData.items"),
     ]
+    
     try:
-        response = client.service.searchEvents(
-            request=request,  
-            batchSize=1,  
-            firstResultIndex=0, 
-            options=options  
-        )
-        print("Réponse :", response)
+        codeResult=200
+        i=0
+        responses=[]
+        while(codeResult==200):
+            response = client.service.searchEvents(
+                request=request,  
+                batchSize=50,  
+                firstResultIndex=i, 
+                options=options  
+            )
+            #print("Réponse :", response)
+            codeResult=response['resultCode']
+            #h=len(response['entities'])
+            i=i+50
+            responses.append(response)
     except Exception as e:
         print("Erreur lors de l'appel à searchEvents :", e)
+    return responses
 
-getRequette("2016-09-21","2016-11-21")
-
-""" TODO:
-        boucle tant que reponse.code=200, on refait index=index+50
-        recuperer reponse dans chaine de caractere
-        renvoyer chaine de caractere
-    
-    TODO FCT ECRITURE DANS FICHIER EXCELL:
-
-    
-        """

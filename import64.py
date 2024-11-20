@@ -26,6 +26,3 @@ def getToken():
     token_data = response.json()
     access_token = token_data.get('access_token')
     return access_token
-
-
-
