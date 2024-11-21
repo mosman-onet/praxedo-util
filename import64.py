@@ -9,9 +9,7 @@ def getToken():
 
 
     credentials = f'{client_id}:{client_secret}'
-    print(f"credentiels : {credentials}")
     encoded_credentials = base64.b64encode(credentials.encode('utf-8')).decode('utf-8')
-    print(f"credentiels : {encoded_credentials}")
     url = 'https://auth.praxedo.com/oauth2/ausaua1mf29S8ptC0417/v1/token'
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',

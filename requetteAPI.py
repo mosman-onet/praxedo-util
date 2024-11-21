@@ -2,7 +2,7 @@ import requests
 from zeep import *
 from import64 import getToken
 
-def getRequette(dateModif,dateAujd):
+def getRequetteSansCR(dateModif,dateAujd):
     #config connexion
     access_token= getToken()
     session = requests.Session()
@@ -13,7 +13,7 @@ def getRequette(dateModif,dateAujd):
     client= Client(wsdl="https://eu7.praxedo.com/eTech/services/cxf/v6/BusinessEventManager?wsdl",transport=transport)
     # Construction des paramètres de la requête
     date_constraint = client.get_type("ns0:dateConstraint")(
-        dateRange=[f"{dateModif}T00:00:00", f"{dateAujd}T19:00:00"],  # Période de date
+        dateRange=[f"{dateModif}T00:00:00",f"{dateAujd}T00:00:00"],  # Période de date
         name= "lastModificationDate",  # Nom de la contrainte
     )
     
@@ -29,8 +29,6 @@ def getRequette(dateModif,dateAujd):
         options_type(key="businessEvent.populate.coreData"),
         options_type(key="businessEvent.populate.qualificationData"),
         options_type(key="businessEvent.populate.schedulingData"),
-        #options_type(key="businessEvent.populate.completionData.fields"),
-        #options_type(key="businessEvent.populate.completionData.items"),
     ]
     
     try:
@@ -44,9 +42,7 @@ def getRequette(dateModif,dateAujd):
                 firstResultIndex=i, 
                 options=options  
             )
-            #print("Réponse :", response)
             codeResult=response['resultCode']
-            #h=len(response['entities'])
             i=i+50
             responses.append(response)
     except Exception as e:
