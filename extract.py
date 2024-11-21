@@ -16,9 +16,13 @@ def parseCoreData(coreData):
         dateCreation=coreData['creationDate'].strftime('%d/%m/%Y %H:%M:%S')
         #print("date = ", dateCreation)
         description=coreData['description']
-        print("date = ", description)
         drapeau=coreData['priority']
+        earliestDate=coreData['earliestDate'].strftime('%d/%m/%Y %H:%M:%S')
+        
+        expirationDate=coreData['expirationDate'].strftime('%d/%m/%Y %H:%M:%S')
 
+
+        
     except Exception as e:
         print("Erreur lors de l'appel à searchEvents :", e)
 
@@ -30,6 +34,15 @@ parseCoreData(coreData)
 
 """
 todo: fct ecrire dans csv: if None-> vide else ecrire
-fct drapeau to nb binaire or color name
+todo: fct drapeau to nb binaire or color name
+todo: qualification data has items type interv
+
+date solde, date charge pda datevalidation what ate they
+
+consommes et activités?
+ 
+evenement notification or wtvr to see 
+
+
 
 """
