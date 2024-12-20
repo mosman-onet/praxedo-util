@@ -1,0 +1,95 @@
+from openpyxl import load_workbook
+import pandas as pd
+import re
+
+def clean_excel_formula(formula: str) -> str:
+    """
+    Clean up Excel formulas by properly handling escaped quotes and line continuations.
+    """
+    # Remove line continuations and merge lines
+    formula = formula.replace('_\n', '').replace('_\r\n', '')
+    formula = formula.strip()
+    
+    # First, temporarily replace legitimate double-double quotes with a placeholder
+    placeholder_double = "<<DOUBLE_QUOTE>>"
+    placeholder_empty = "<<EMPTY_QUOTE>>"
+    
+    # Replace empty quotes ("") with a placeholder
+    formula = formula.replace('""""', placeholder_empty)
+    
+    # Replace remaining double-double quotes
+    formula = formula.replace('""""', placeholder_double)
+    
+    # Remove any remaining excessive quotes
+    formula = formula.replace('"""', '"')
+    formula = formula.replace('""', '"')
+    
+    # Handle special case of quoted hash symbol
+    formula = formula.replace('"#"', '"#"')  # Ensure consistent format
+    
+    # Restore the proper quotes
+    formula = formula.replace(placeholder_double, '""')
+    formula = formula.replace(placeholder_empty, '""')
+    
+    # Remove any leading/trailing quotes from the entire formula
+    if formula.startswith('"') and formula.endswith('"'):
+        formula = formula[1:-1]
+    
+    return formula
+
+def traduire_formule_r1c1(formule: str) -> tuple:
+    """
+    Translate R1C1 formulas and clean up quote escaping.
+    """
+    
+    formule = ' '.join(line.strip() for line in formule.split('_'))
+    
+    
+    colonne_match = re.search(r'Range\("([A-Z]+)(\d+):([A-Z]+)?(\d+)?\" & DerniereLigne\)', formule)
+    
+    formule_match = re.search(r'=(.*)', formule)
+    
+    debut_colonne = ""
+    formule_complete = ""
+    
+    if colonne_match:
+        debut_colonne = colonne_match.group(1)
+    
+    if formule_match:
+       
+        formule_complete = clean_excel_formula(formule_match.group(1))
+    
+    return (1, debut_colonne, formule_complete)
+
+def process_excel_formulas(input_txt_file: str, output_csv_file: str):
+    """
+    Process Excel formulas from input file and save to CSV.
+    """
+ 
+    with open(input_txt_file, 'r', encoding='utf-8') as file:
+        content = file.read()
+       
+        formules_macros = re.split(r'(?<!_)\n', content)
+       
+        formules_macros = [f for f in formules_macros if f.strip()]
+    
+   
+    df = pd.DataFrame(columns=['Intitulé de Range', 'Formule'])
+    
+    
+    for formule in formules_macros:
+        traduction = traduire_formule_r1c1(formule)
+        if traduction[0]:
+            df = df._append({
+                'Intitulé de Range': traduction[1],
+                'Formule': traduction[2]
+            }, ignore_index=True)
+    
+   
+    df.to_csv(output_csv_file, index=False, encoding='utf-8')
+    print(f"Formules traduites et intitulés de range enregistrés dans {output_csv_file}.")
+    
+    return df
+
+
+process_excel_formulas("formuleMacro.txt", "sortie.csv")
