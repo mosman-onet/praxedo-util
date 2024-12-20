@@ -1,0 +1,127 @@
+    Range("AS2:AS" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-3],FIND(""TT_INTER="",RC[-3],1)+9)+1,0)"
+    
+    Range("AT2:AT" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-4],FIND(""TT_INTER="",RC[-4],1+RC[-1])+9)+1,0)"
+
+    Range("AU2:AU" & DerniereLigne).FormulaR1C1 = "=IF(RC[-1]<>0,IFERROR(FIND(""="",RC[-5],FIND(""TT_INTER="",RC[-5],1+RC[-1])+9)+1,0),0)"
+    
+    Range("AV2:AV" & DerniereLigne).FormulaR1C1 = "=IF(RC[-1]<>0,IFERROR(FIND(""="",RC[-6],FIND(""TT_INTER="",RC[-6],1+RC[-1])+9)+1,0),0)"
+
+    Range("AW2:AW" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-7],FIND(""TT_TRAJ_INT="",RC[-7],1)+12)+1,0)"
+    
+    Range("AX2:AX" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-8],FIND(""TT_TRAJ_INT="",RC[-8],RC[-1])+12)+1,0)"
+    
+    Range("AY2:AY" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-9],FIND(""TT_TRAJ_INT="",RC[-9],RC[-1])+12)+1,0)"
+    
+    Range("AZ2:AZ" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-10],FIND(""TT_TRAJ_INT="",RC[-10],RC[-1])+12)+1,0)"
+    
+    Range("BA2:BA" & DerniereLigne).FormulaR1C1 = "=IFERROR((IF(RC[-4]<>0,MID(RC[-11],RC[-4]+17,16),0)-IF(RC[-4]<>0,MID(RC[-11],RC[-4],16),0))*24,0)"
+    
+    Range("BB2:BB" & DerniereLigne).FormulaR1C1 = "=IFERROR((IF(RC[-4]<>0,MID(RC[-12],RC[-4]+17,16),0)-IF(RC[-4]<>0,MID(RC[-12],RC[-4],16),0))*24,0)"
+    
+    Range("BC2:BC" & DerniereLigne).FormulaR1C1 = "=(IF(RC[-4]<>0,MID(RC[-13],RC[-4]+17,16),0)-IF(RC[-4]<>0,MID(RC[-13],RC[-4],16),0))*24"
+    
+    Range("BD2:BD" & DerniereLigne).FormulaR1C1 = "=(IF(RC[-4]<>0,MID(RC[-14],RC[-4]+17,16),0)-IF(RC[-4]<>0,MID(RC[-14],RC[-4],16),0))*24"
+    
+    Range("BE2:BE" & DerniereLigne).FormulaR1C1 = "=IFERROR(RC[-4]+RC[-3]+RC[-2]+RC[-1],0)"
+    
+    Range("BF2:BF" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-16],FIND(""TT_ACCES="",RC[-16],1)+9)+1,0)"
+    
+    Range("BG2:BG" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""="",RC[-17],FIND(""TT_ACCES="",RC[-17],1+RC[-1])+9)+1,0)"
+
+    Range("BH2:BH" & DerniereLigne).FormulaR1C1 = "=IFERROR((IF(RC[-2]<>0,MID(RC[-18],RC[-2]+17,16),0)-IF(RC[-2]<>0,MID(RC[-18],RC[-2],16),0))*24+(IF(RC[-1]<>0,MID(RC[-18],RC[-1]+17,16),0)-IF(RC[-1]<>0,MID(RC[-18],RC[-1],16),0))*24,0)"
+    
+    Range("BI2:BI" & DerniereLigne).FormulaR1C1 = "=IF(AND(RC[-19]<>0,RC[-23]<>""""),MIN(IF(RC[-16]<>0,MID(RC[-19],RC[-16],16)+0,RC[-23]),IF(RC[-15]<>0,MID(RC[-19],RC[-15],16)+0,10000000000),IF(RC[-14]<>0,MID(RC[-19],RC[-14],16)+0,10000000000),IF(RC[-13]<>0,MID(RC[-19],RC[-13],16)+0,10000000000)),0)"
+    
+    Range("BJ2:BJ" & DerniereLigne).FormulaR1C1 = "=IF(RC[-24]<>"""",INT(RC[-24]),"""")"
+    
+    Range("BK2:BK" & DerniereLigne).FormulaR1C1 = "=IF(RC[-1]<>"""",CONCATENATE(YEAR(RC[-1]),""-"",WEEKNUM(RC[-1],21)),"""")"
+    
+    Range("BL2:BL" & DerniereLigne).FormulaR1C1 = "=IF(RC[-3]<>"""",IF(RC[21]<>""Dép"",0,(NETWORKDAYS(RC[-56],RC[-3],'Source GTI'!R2C8:R150C8)-2)*VLOOKUP(RC[-55],'Source GTI'!C1:C4,4,FALSE)*24+(MOD(RC[-3],1)-VLOOKUP(RC[-55],'Source GTI'!C1:C4,2,FALSE)+VLOOKUP(RC[-55],'Source GTI'!C1:C4,3,FALSE)-MOD(RC[-56],1))*24),0)"
+    
+    Range("BM2:BM" & DerniereLigne).FormulaR1C1 = "=IFERROR((IF(RC[-20]<>0,MID(RC[-23],RC[-20]+17,16),0)-IF(RC[-20]<>0,MID(RC[-23],RC[-20],16),0))*24,0)+IFERROR((IF(RC[-19]<>0,MID(RC[-23],RC[-19]+17,16),0)-IF(RC[-19]<>0,MID(RC[-23],RC[-19],16),0))*24,0)+IFERROR((IF(RC[-18]<>0,MID(RC[-23],RC[-18]+17,16),0)-IF(RC[-18]<>0,MID(RC[-23],RC[-18],16),0))*24,0)+IFERROR((IF(RC[-17]<>0,MID(RC[-23],RC[-17]+17,16),0)-IF(RC[-17]<>0,MID(RC[-23],RC[-17],16),0))*24,0)+RC[-5]"
+        
+    Range("BN2:BN" & DerniereLigne).FormulaR1C1 = "=IF(AND(RC[-36]<>0,RC[-36]<>""""),RC[-1]/RC[-36],0)"
+    
+    Range("BO2:BO" & DerniereLigne).FormulaR1C1 = "=VLOOKUP(RC[-60],'Table nature interv'!C[-60]:C[-59],2,FALSE)"
+    
+    Range("BP2:BP" & DerniereLigne).FormulaR1C1 = "=IF(AND(RC[-38]<>0,RC[-37]<>""""),VLOOKUP(IFERROR(VALUE(IFERROR(LEFT(RC[-37],FIND(""#"",RC[-37],1)-1),RC[-37])),IFERROR(LEFT(RC[-37],FIND(""#"",RC[-37],1)-1),RC[-37])),'Table technicien'!C[-65]:C[-63],3,FALSE),"""")"
+    
+    Range("BQ2:BQ" & DerniereLigne).FormulaR1C1 = "=IF(AND(RC[-39]>1,RC[-38]<>""""),VLOOKUP(IFERROR(VALUE(IFERROR(RIGHT(RC[-38],LEN(RC[-38])-FIND(""#"",RC[-38],1)),"""")),IFERROR(RIGHT(RC[-38],LEN(RC[-38])-FIND(""#"",RC[-38],1)),"""")),'Table technicien'!C[-66]:C[-64],3,FALSE),"""")"
+    
+    Range("BR2:BR" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-26],FIND(""CreateInterventionEvent="",RC[-26],1)+24,16)+0,"""")"
+    
+    Range("BS2:BS" & DerniereLigne).FormulaR1C1 = "=IFERROR(VLOOKUP(RC[-61],'Table nature interv'!C[-59]:C[-58],2,FALSE),""INCONNU"")"
+    
+    Range("BT2:BT" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-60],FIND("" / "",RC[-60],FIND("" / "",RC[-60],FIND("" / "",RC[-60])+1)+1)+3,FIND("" /"",RC[-60],FIND("" / "",RC[-60],FIND("" / "",RC[-60],FIND("" / "",RC[-60])+1)+1)+1)-FIND("" / "",RC[-60],FIND("" / "",RC[-60],FIND("" / "",RC[-60])+1)+1)-3)+0,0)"
+    
+    Range("BU2:BU" & DerniereLigne).FormulaR1C1 = "=IFERROR(VLOOKUP(RC[-62],Contrat_en_cours!C[-62]:C[-41],22,FALSE),IFERROR(VLOOKUP(RC[-1],Contrat_en_cours!C[-65]:C[-41],25,FALSE),""HC""))"    
+    Range("BW2:BW" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-35],FIND(R1C,RC[-35],1)+LEN(R1C),FIND(""#"",RC[-35],FIND(R1C,RC[-35],1)+LEN(R1C))-(FIND(R1C,RC[-35],1)+LEN(R1C))),"""")"
+    
+    Range("BX2:BX" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-36],FIND(R1C,RC[-36],1)+LEN(R1C),FIND(""#"",RC[-36],FIND(R1C,RC[-36],1)+LEN(R1C))-(FIND(R1C,RC[-36],1)+LEN(R1C))),"""")"
+    
+    Range("BY2:BY" & DerniereLigne).FormulaR1C1 = "=IF(RC[-52]<>"""",IF(RC[-52]-TODAY()>0,""Futur"",""Passé""),""Non Planifié"")"
+    Range("CG2:CG" & DerniereLigne).FormulaR1C1 = "=VLOOKUP(RC[-62],'Table nature interv'!C1:C2,2,FALSE)"
+
+    Range("CH2:CH" & DerniereLigne).FormulaR1C1 = "=LEFT(RC[-82],IFERROR(FIND(""#"",RC[-82],1)-1,LEN(RC[-82])))"
+    
+    Range("CI2:CI" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-83],FIND(""#"",RC[-83],1)+1,LEN(RC[-83])-FIND(""#"",RC[-83],1))+0,0)"
+
+    Range("CJ2:CJ" & DerniereLigne).FormulaR1C1 = "=IFERROR(FIND(""#STATUT=suite à donner#"",RC[-48],1)/FIND(""#STATUT=suite à donner#"",RC[-48],1),0)"
+
+    Range("CK2:CK" & DerniereLigne).FormulaR1C1 = "=IF(IFERROR(MID(RC[-49],FIND(R1C,RC[-49],1)+LEN(R1C),FIND(""#"",RC[-49],FIND(R1C,RC[-49],1)+LEN(R1C))-(FIND(R1C,RC[-49],1)+LEN(R1C))),"""")=""on"",1,0)"
+
+    Range("CL2:CL" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-50],FIND(R1C,RC[-50],1)+LEN(R1C),FIND(""#"",RC[-50],FIND(R1C,RC[-50],1)+LEN(R1C))-(FIND(R1C,RC[-50],1)+LEN(R1C))),"""")"
+
+    Range("CM2:CM" & DerniereLigne).FormulaR1C1 = "=IF(IFERROR(MID(RC[-51],FIND(R1C,RC[-51],1)+LEN(R1C),FIND(""#"",RC[-51],FIND(R1C,RC[-51],1)+LEN(R1C))-(FIND(R1C,RC[-51],1)+LEN(R1C))),"""")=""Oui"",1,0)"
+
+    Range("CN2:CN" & DerniereLigne).FormulaR1C1 = "=IF(IFERROR(MID(RC[-52],FIND(R1C,RC[-52],1)+LEN(R1C),FIND(""#"",RC[-52],FIND(R1C,RC[-52],1)+LEN(R1C))-(FIND(R1C,RC[-52],1)+LEN(R1C))),"""")=""on"",1,0)"
+
+    Range("CO2:CO" & DerniereLigne).FormulaR1C1 = "=IF(IFERROR(MID(RC[-53],FIND(R1C,RC[-53],1)+LEN(R1C),FIND(""#"",RC[-53],FIND(R1C,RC[-53],1)+LEN(R1C))-(FIND(R1C,RC[-53],1)+LEN(R1C))),"""")=""on"",1,0)"
+
+    Range("CP2:CP" & DerniereLigne).FormulaR1C1 = "=IF(AND(RC[-6]=1,RC[-5]+RC[-3]+RC[-2]+RC[-1]=0),1,0)"
+
+    Range("CQ2:CQ" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-55],FIND(R1C,RC[-55],1)+LEN(R1C),FIND(""#"",RC[-55],FIND(R1C,RC[-55],1)+LEN(R1C))-(FIND(R1C,RC[-55],1)+LEN(R1C))),"""")"
+
+    Range("CR2:CR" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-56],FIND(R1C,RC[-56],1)+17,3),"""")"
+
+    Range("CS2:CS" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC[-57],FIND(R1C,RC[-57],1)+LEN(R1C),FIND(""#"",RC[-57],FIND(R1C,RC[-57],1)+LEN(R1C))-(FIND(R1C,RC[-57],1)+LEN(R1C))),"""")"
+
+    Range("CT2:CT" & DerniereLigne).FormulaR1C1 = "=IFERROR(MID(RC38,FIND(R1C,RC38,1)+LEN(R1C),FIND(""#"",RC38,FIND(R1C,RC38,1)+LEN(R1C))-(FIND(R1C,RC38,1)+LEN(R1C))),"""")"
+
+    Range("CU2:CU" & DerniereLigne).FormulaR1C1 = "=IF(MID(RC[-93],2,1)=""S"",""Equip SAV"",""Equip INST"")"
+
+    Range("CW2:CW" & DerniereLigne).FormulaR1C1 = "=IF(RC[-92]<>0,IF(RC[-37]<=VLOOKUP(RC[-92],'Source GTI'!C[-100]:C[-95],5,FALSE),1,0),"""")"
+
+    Range("CX2:CX" & DerniereLigne).FormulaR1C1 = "=IF(RC[-93]<>"""",IF(RC[-38]<=VLOOKUP(RC[-93],'Source GTI'!C[-101]:C[-96],6,FALSE),1,0),"""")"
+
+    Range("CY2:CY" & DerniereLigne).FormulaR1C1 = "=COUNTIFS(C[-18],""Dép"",C[-92],RC[-92],C[-65],""<"" &RC[-65]+30,C[-65],"">"" &RC[-65])"
+
+    Range("CZ2:CZ" & DerniereLigne).FormulaR1C1 = _
+         "=IF(AND(COUNTIFS(C[-100],CONCATENATE(TEXT(RC[-18],0),""#"",IF(RC[-17]="""",1,RC[-17]+1)))=1,RC[-16]=1),""SaD créée"",IF(RC[-16]=1,""SaD à Créer"",""Interv OK""))"
+    
+    Range("DA2:DA" & DerniereLigne).FormulaR1C1 = _
+        "=IF(RC[-16]=1,""SaD Pièce"",IF(RC[-14]=1,""SaD Devis"",IF(RC[-13]=1,""SaD Fermeture"",IF(RC[-12]=1,""SaD Moyen"",IF(RC[-11]=1,""SaD Autre"",""Pas de SaD"")))))"
+
+    Range("DB2:DB" & DerniereLigne).FormulaR1C1 = _
+        "=IFERROR(FIND(""CancelInterventionEvent="",RC[-62],1)/FIND(""CancelInterventionEvent="",RC[-62],1),0)"
+   
+    Range("DC2:DC" & DerniereLigne).FormulaR1C1 = _
+        "=IFERROR(MID(RC[-67],FIND(R1C,RC[-67],1)+LEN(R1C),FIND(""#"",RC[-67],FIND(R1C,RC[-67],1)+LEN(R1C))-(FIND(R1C,RC[-67],1)+LEN(R1C))),"""")"
+        
+    Range("DD2:DD" & DerniereLigne).FormulaR1C1 = _
+         "=IFERROR(MID(RC[-68],FIND(R1C,RC[-68],1)+LEN(R1C),FIND(""#"",RC[-68],FIND(R1C,RC[-68],1)+LEN(R1C))-(FIND(R1C,RC[-68],1)+LEN(R1C))),"""")"
+        
+    Range("DE2:DE" & DerniereLigne).FormulaR1C1 = _
+        "=IFERROR(MID(RC[-69],FIND(R1C,RC[-69],1)+LEN(R1C),FIND(""#"",RC[-69],FIND(R1C,RC[-69],1)+LEN(R1C))-(FIND(R1C,RC[-69],1)+LEN(R1C))),"""")"
+        
+    Range("DF2:DF" & DerniereLigne).FormulaR1C1 = _
+        "=IFERROR(MID(RC[-70],FIND(R1C,RC[-70],1)+LEN(R1C),FIND(""#"",RC[-70],FIND(R1C,RC[-70],1)+LEN(R1C))-(FIND(R1C,RC[-70],1)+LEN(R1C))),"""")"
+        
+    Range("DG2:DG" & DerniereLigne).FormulaR1C1 = _
+        "=IFERROR(IF(FIND(""MO"",RC[-4])>=0,""Oui"",""Non""),""Non"")"
+        
+    Range("DH2:DH" & DerniereLigne).FormulaR1C1 = _
+        "=COUNTIFS(C[-27],""Dép"",C[-101],RC[-101],C[-74],"">"" &RC[-74]-30,C[-74],""<"" &RC[-74])"
+        
+    Range("DI2:DI" & DerniereLigne).FormulaR1C1 = _
+        "=COUNTIFS(C[-28],""Dép"",C[-102],RC[-102],C[-75],"">"" &RC[-75]-30,C[-75],""<"" &RC[-75],C[-2],""Non"")"
